@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="Points" transaction-type="JTA">
+        <jta-data-source>postgres</jta-data-source>
+        <class>bgs.Point</class>
+
+        <properties><!--
+            <property name="javax.persistence.jdbc.user" value="bgs99c"/>
+            <property name="javax.persistence.jdbc.password" value="65664369"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc/postgres"/>-->
+        </properties>
+    </persistence-unit>
+</persistence>
