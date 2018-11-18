@@ -3,8 +3,6 @@ package bgs;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean
-@SessionScoped
 public class Current {
     private double x, y;
     private int r = 1;

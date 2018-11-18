@@ -5,97 +5,33 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
 
+    </h:head>
 
-    <body>
-        <h:form id="hi" style="display: none">
-            <h:inputHidden id="x" value="#{click.x}" />
-            <h:inputHidden id="y" value="#{click.y}" />
-            <h:commandButton id="submit" action="#{click.add}"/>
+    <h:body>
+        <h:link outcome="main">Go to main page</h:link>
+        <table style="table-layout: fixed; text-align: center; width: 100%">
+            <tr>
+                <td>
+                    Гуляев Б. С., Полещук Ф. А.
+                </td>
+                <td>
+                    Группа P3212
+                </td>
+                <td>
+                    Вариант 8318
+                </td>
+
+            </tr>
+        </table>
+        <h:form>
+
+        <p:poll interval="13"
+                listener="#{time.listener()}" update="clock"/>
+        <h:outputText id="clock" value="#{time.now}"/>
         </h:form>
-        <script type="application/javascript">
-            function getRelativeCoords(event) {
-                return { x: event.offsetX, y: event.offsetY };
-            }
-            function getCoords(event) {
-
-                var coords = getRelativeCoords(event);
-                document.getElementById("hi:x").value = coords.x;
-                document.getElementById("hi:y").value = coords.y;
-                document.getElementById("hi:submit").click();
-            }
-        </script>
-
-        <div onclick="getCoords(event)" style="width: 300px">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="300">
-                <path d="M200,150 A50,50 0 0,1  150,200 L50,200 L50,150 L100,150 L150,100 L150,150 L200,150" fill="blue" fill-opacity="1"/>
-                <line x1="150" y1="0" x2="150" y2="300" stroke="black" stroke-width="2" />
-                <line x1="0" y1="150" x2="300" y2="150" stroke="black" stroke-width="2" />
-
-                <line x1="140" y1="10" x2="150" y2="0" stroke="black" stroke-width="2" />
-                <line x1="160" y1="10" x2="150" y2="0" stroke="black" stroke-width="2" />
-
-                <line x1="290" y1="140" x2="300" y2="150" stroke="black" stroke-width="2" />
-                <line x1="290" y1="160" x2="300" y2="150" stroke="black" stroke-width="2" />
-
-
-                <ui:repeat value="#{pointRep.allPoints}" var="point">
-                    <circle cx="#{converter.getX(point)}" cy="#{converter.getY(point)}"
-                            r="3" fill="#{converter.getColor(point)}"/>
-                </ui:repeat>
-                <text x="200" y="150" fill="">#{current.r/2}</text>
-                <text x="100" y="150" fill="">#{-current.r/2}</text>
-                <text x="150" y="100" fill="">#{current.r/2}</text>
-                <text x="150" y="200" fill="">#{-current.r/2}</text>
-                <text x="0" y ="10">#{click.x}</text>
-                <text x="250" y="150" fill="">#{current.r}</text>
-                <text x="50" y="150" fill="">#{-current.r}</text>
-                <text x="150" y="50" fill="">#{current.r}</text>
-                <text x="150" y="250" fill="">#{-current.r}</text>
-                <rect x="0" y="0" width="300" height="300" opacity="0"/>
-            </svg>
-        </div>
-        <h:form id="manual">
-            <h:outputLabel for="mx" value="X:"/>
-            <h:inputText id="mx" value="#{current.x}"/>
-            <br/>
-            <h:commandButton action="#{current.setY(-4)}" value="-4"/>
-            <h:commandButton action="#{current.setY(-3)}" value="-3"/>
-            <h:commandButton action="#{current.setY(-2)}" value="-2"/>
-            <h:commandButton action="#{current.setY(-1)}" value="-1"/>
-            <h:commandButton action="#{current.setY(0)}" value="0"/>
-            <h:commandButton action="#{current.setY(1)}" value="1"/>
-            <h:commandButton action="#{current.setY(2)}" value="2"/>
-            <h:commandButton action="#{current.setY(3)}" value="3"/>
-            <h:commandButton action="#{current.setY(4)}" value="4"/>
-            <br/>
-            <h:commandButton action="#{current.setR(1)}" value="1"/>
-            <h:commandButton action="#{current.setR(2)}" value="2"/>
-            <h:commandButton action="#{current.setR(3)}" value="3"/>
-            <h:commandButton action="#{current.setR(4)}" value="4"/>
-            <h:commandButton action="#{current.setR(5)}" value="5"/>
-            <br/>
-            <h:commandButton action="#{pointRep.add(current.x, current.y)}" value="Add"/>
-        </h:form>
-        <br/>
-        <h:dataTable value="#{pointRep.allPoints}" var="p">
-            <h:column>
-                <f:facet name="header">X</f:facet>
-                #{p.x}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Y</f:facet>
-                #{p.y}
-            </h:column>
-            <h:column>
-                <f:facet name="header">R</f:facet>
-                #{p.r}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Inside</f:facet>
-                #{p.inside}
-            </h:column>
-        </h:dataTable>
-    </body>
+    </h:body>
 </html>

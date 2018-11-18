@@ -16,14 +16,11 @@ import javax.faces.bean.ManagedBean;
 import javax.servlet.http.HttpSession;
 import javax.transaction.*;
 
-@ManagedBean
-@SessionScoped
 public class PointRep {
     // Injected database connection:
     @PersistenceContext(unitName = "Points")
     private EntityManager em;
 
-    @ManagedProperty(value = "#{current}")
     private Current cur;
 
     public Current getCur(){

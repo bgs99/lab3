@@ -1,15 +1,7 @@
 package bgs;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-
-@ManagedBean
-@SessionScoped
 public class Click {
-    @ManagedProperty(value = "#{pointRep}")
     private PointRep pr;
-    @ManagedProperty(value = "#{current}")
     private Current cur;
     public void setPr(PointRep pr) {
         this.pr = pr;
@@ -41,8 +33,8 @@ public class Click {
         y = val;
     }
     public void add(){
-        double rx = (x-150)*cur.getR()/100;
-        double ry = (150-y)*cur.getR()/100;
+        double rx = (x-150) * cur.getR()/100;
+        double ry = (150-y) * cur.getR()/100;
         pr.add(rx, ry);
     }
 }
